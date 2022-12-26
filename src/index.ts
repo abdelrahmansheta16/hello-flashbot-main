@@ -6,3 +6,6 @@ import {
 
 const GWEI = 10n ** 9n;
 const ETHER = 10n ** 18n;
+
+const CHAIN_ID = 5; // goerli
+const FLASHBOTS_ENDPOINT = "https://relay-goerli.flashbots.net";
