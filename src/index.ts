@@ -14,3 +14,8 @@ const provider = new providers.JsonRpcProvider({
   // @ts-ignore
   url: process.env.ETH_RPC_URL,
 });
+
+// @ts-ignore
+const wallet = new Wallet(process.env.PRIVATE_KEY, provider);
+
+main();
