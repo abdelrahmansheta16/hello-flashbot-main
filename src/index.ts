@@ -18,4 +18,19 @@ const provider = new providers.JsonRpcProvider({
 // @ts-ignore
 const wallet = new Wallet(process.env.PRIVATE_KEY, provider);
 
+async function main() {
+  const signer = new Wallet(
+    "0x2000000000000000000000000000000000000000000000000000000000000000"
+  );
+  //   const signer = Wallet.createRandom();
+  const flashbot = await FlashbotsBundleProvider.create(
+    provider,
+    signer,
+    FLASHBOTS_ENDPOINT
+  );
+  provider.on("block", async (block) => {
+    console.log(`block: ${block}`);
+  });
+}
+
 main();
