@@ -30,6 +30,23 @@ async function main() {
   );
   provider.on("block", async (block) => {
     console.log(`block: ${block}`);
+
+    const signedTx = await flashbot.signBundle([
+      {
+        signer: wallet,
+        transaction: {
+          chainId: CHAIN_ID,
+          // EIP 1559 transaction
+          type: 2,
+          value: 0,
+          data: "0x",
+          maxFeePerGas: GWEI * 3n,
+          maxPriorityFeePerGas: GWEI * 2n,
+          gasLimit: 1000000,
+          to: "0x26C4ca34f722BD8fD23D58f34576d8718c883A80",
+        },
+      },
+    ]);
   });
 }
 
