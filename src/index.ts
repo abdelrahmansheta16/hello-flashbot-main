@@ -47,6 +47,9 @@ async function main() {
         },
       },
     ]);
+
+    const targetBlock = block + 1;
+    const sim = await flashbot.simulate(signedTx, targetBlock);
   });
 }
 
