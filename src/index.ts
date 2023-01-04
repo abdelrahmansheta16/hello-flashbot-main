@@ -50,6 +50,13 @@ async function main() {
 
     const targetBlock = block + 1;
     const sim = await flashbot.simulate(signedTx, targetBlock);
+
+    if ("error" in sim) {
+      console.log(`simulation error: ${sim.error.message}`);
+    } else {
+      // console.log(`simulation success: ${JSON.stringify(sim, null, 2)}`);
+      console.log(`simulation success`);
+    }
   });
 }
 
