@@ -57,6 +57,11 @@ async function main() {
       // console.log(`simulation success: ${JSON.stringify(sim, null, 2)}`);
       console.log(`simulation success`);
     }
+
+    const res = await flashbot.sendRawBundle(signedTx, targetBlock);
+    if ("error" in res) {
+      throw new Error(res.error.message);
+    }
   });
 }
 
