@@ -62,6 +62,22 @@ async function main() {
     if ("error" in res) {
       throw new Error(res.error.message);
     }
+
+    const bundleResolution = await res.wait();
+    if (bundleResolution === FlashbotsBundleResolution.BundleIncluded) {
+      console.log(`Congrats, included in ${targetBlock}`);
+      console.log(JSON.stringify(sim, null, 2));
+      process.exit(0);
+    } else if (
+      bundleResolution === FlashbotsBundleResolution.BlockPassedWithoutInclusion
+    ) {
+      console.log(`Not included in ${targetBlock}`);
+    } else if (
+      bundleResolution === FlashbotsBundleResolution.AccountNonceTooHigh
+    ) {
+      console.log("Nonce too high, bailing");
+      process.exit(1);
+    }
   });
 }
 
